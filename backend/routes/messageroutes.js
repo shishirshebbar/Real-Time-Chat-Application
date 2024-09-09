@@ -1,8 +1,9 @@
 import express from "express";
+import protectedRoute from "../Middlewares/protectedroute.js";
 
 import {sendmessage} from "../controllers/messagecontroller.js"
 const router=express.Router();
-router.post("/send/:id",sendmessage);//protect route before running the function
+router.post("/send/:id",protectedRoute,sendmessage);//protect route before running the function
 
 
 

@@ -5,6 +5,7 @@ import connecttoMongo from "./databaseconfig/db.js";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import messageroutes from "./routes/messageroutes.js"
+import cookieParser from "cookie-parser";
 const app = express();
 const PORT=process.env.PORT||5000;
 
@@ -15,6 +16,7 @@ const __dirname = path.dirname(__filename);
 
 
 app.use(express.json());
+app.use(cookieParser());
 app.use('./assets', express.static(path.join(__dirname, 'assets')));
 
 
