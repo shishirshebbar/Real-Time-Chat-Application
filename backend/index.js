@@ -6,6 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import messageroutes from "./routes/messageroutes.js"
 import cookieParser from "cookie-parser";
+import userroutes from "./routes/userroutes.js";
 const app = express();
 const PORT=process.env.PORT||5000;
 
@@ -22,6 +23,7 @@ app.use('./assets', express.static(path.join(__dirname, 'assets')));
 
 app.use("/api/authorized",authorizedroutes);
 app.use("/api/messages", messageroutes);
+app.use("/api/users", userroutes);
 
 app.listen(PORT,()=>{connecttoMongo();
     console.log(`Running on ${PORT}`)});
