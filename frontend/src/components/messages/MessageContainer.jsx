@@ -3,7 +3,7 @@ import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { LuMessagesSquare } from "react-icons/lu";
 function MessageContainer() {
-	const ifnochatisSelcted = true;
+	const ifnochatisSelcted = false;
   return (
     <div className='md:min-w-[450px] flex flex-col'>
 		{ifnochatisSelcted?(<NoChat />):(
