@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
 import CheckGender from './CheckGender'
 import { Link } from 'react-router-dom'
+import Signuphooks from '../../hooks/Signuphooks';
 
 function Signup() {
 	const[forminput,setforminput] = useState({
-		fullName:'',
+		fullname:'',
 		username:'',
 		password:'',
-		confirmPassword:'',
+		confirmpassword:'',
 		gender:''	
 	});
 
-	const handleSubmitbutton = (e)=>{
+	const {loading,signup}= Signuphooks();
+	const handlegenderchangebuttton =(gender)=>{
+		setforminput({...forminput,gender});
+	}
+
+	const handleSubmitbutton = async(e)=>{
 		e.preventDefault();
-		console.log(forminput);
+		await signup(forminput);
+		
 	}
 
   return (
@@ -28,8 +35,8 @@ function Signup() {
  							<span className='text-base label-text'>Full Name</span>
  						</label>
  						<input type='text' placeholder='Enter full name' className='w-full input input-bordered  h-10'
-						value={forminput.fullName}
-						onChange={(e)=>setforminput({...forminput,fullName:e.target.value})} />
+						value={forminput.fullname}
+						onChange={(e)=>setforminput({...forminput,fullname:e.target.value})} />
  					</div>
 
  					<div>
@@ -62,12 +69,12 @@ function Signup() {
 							type='password'
 							placeholder='Confirm Password'
 							className='w-full input input-bordered h-10'
-							value={forminput.confirmPassword}
-							onChange={(e)=>setforminput({...forminput,confirmPassword:e.target.value})}
+							value={forminput.confirmpassword}
+							onChange={(e)=>setforminput({...forminput,confirmpassword:e.target.value})}
 
 						/>
 					</div>
-          <CheckGender />
+          <CheckGender oncheckboxchange={handlegenderchangebuttton} selectedgender ={forminput.gender}/>
 
 
 					<Link to={"/login"} className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block' href='#'>

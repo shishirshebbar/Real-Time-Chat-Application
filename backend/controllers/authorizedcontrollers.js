@@ -5,8 +5,8 @@ import generateToken from "../utilities/webtokengenerator.js";
 export const signup = async(req,res)=>{
     try{
         const {fullname,username,password,confirmpassword,gender}=req.body;
-        if(password!=confirmpassword){
-            return res.status(400).json({error:"The entered password and the confirm password didn't match."})
+        if(password!==confirmpassword){
+            return res.status(400).json({error:"The entered  and the confirm password didn't match."})
         }
         const user = await User.findOne({username});
         if(user){
