@@ -54,10 +54,10 @@ export const login = async (req, res) => {
 
         // Find user by username
         const user = await User.findOne({ username });
-        const checkPassword = await bcrypt.compare(password,  user.password);
+        const checkPassword = await bcrypt.compare(password,  user.password|| "");
 
         // Check if user exists and password matches
-        if (!user) {
+        if (!user|| !checkPassword) {
             return res.status(400).json({ error: "Wrong username or password" });
         }
        
