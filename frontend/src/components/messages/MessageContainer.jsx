@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { LuMessagesSquare } from "react-icons/lu";
+import useConversation from '../../zustand/useConversation';
 function MessageContainer() {
-	const ifnochatisSelcted = true;
+	const{selectedconversation,setselectedconversation}=useConversation();
+	useEffect(()=>{
+		//unmount
+		return()=>setselectedconversation(null);
+	},[setselectedconversation])
   return (
     <div className='md:min-w-[450px] flex flex-col'>
-		{ifnochatisSelcted?(<NoChat />):(
+		{!selectedconversation?(<NoChat />):(
         <>
  				{/* Header */}
  				<div className='bg-gray-400 px-4 py-2 mb-2 flex items-start w-full'>
 				 <span className='label-text text-slate-500 text-lg'>To:</span>
-				<span className='text-black  font-bold text-lg'> Josh</span>
+				<span className='text-black  font-bold text-lg'> {selectedconversation.fullname}</span>
 
  				</div>
 

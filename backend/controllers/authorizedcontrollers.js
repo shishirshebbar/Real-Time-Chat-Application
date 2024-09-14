@@ -15,8 +15,11 @@ export const signup = async(req,res)=>{
         const pass = await bcrypt.genSalt(10);// A salt is a random value added to the password before hashing to ensure that identical passwords produce different hashes, enhancing security by defending against rainbow table attacks.
         const hashedpassword=await bcrypt.hash(password,pass);
 
-        const img1 =`${req.protocol}://${req.get('host')}/assets/image1.jpg`;
-        const img2 =`${req.protocol}://${req.get('host')}/assets/image2.jpg`;
+        // const img1 =`${req.protocol}://${req.get('host')}/assets/image1.jpg`;
+        // const img2 =`${req.protocol}://${req.get('host')}/assets/image2.jpg`;
+        const img1 =`https://avatar.iran.liara.run/public/boy?username=${username}`;
+		
+        const img2 =`https://avatar.iran.liara.run/public/girl?username=${username}`;
         const newuser= new User({
             fullname,
             username,
