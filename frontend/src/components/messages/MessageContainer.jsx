@@ -13,12 +13,13 @@ function MessageContainer() {
     <div className='md:min-w-[450px] flex flex-col'>
 		{!selectedconversation?(<NoChat />):(
         <>
+ 				
  				{/* Header */}
- 				<div className='bg-gray-400 px-4 py-2 mb-2 flex items-start w-full'>
-				 <span className='label-text text-slate-500 text-lg'>To:</span>
-				<span className='text-black  font-bold text-lg'> {selectedconversation.fullname}</span>
+				<div className="bg-gray-100 px-6 py-4 mb-4 flex items-center space-x-3 w-full rounded-lg shadow-md">
+				<span className="text-gray-600 text-lg font-medium">To:</span>
+				<span className="text-black font-bold text-lg">{selectedconversation.fullname}</span>
+				</div>
 
- 				</div>
 
  				<Messages />
 				<MessageInput />
