@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect , useState} from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { LuMessagesSquare } from "react-icons/lu";
 import useConversation from '../../zustand/useConversation';
+
 function MessageContainer() {
 	const{selectedconversation,setselectedconversation}=useConversation();
+	
 	useEffect(()=>{
 		//unmount
 		return()=>setselectedconversation(null);
 	},[setselectedconversation])
+	   
+  
   return (
     <div className='md:min-w-[450px] flex flex-col'>
 		{!selectedconversation?(<NoChat />):(

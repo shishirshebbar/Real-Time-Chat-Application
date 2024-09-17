@@ -17,7 +17,7 @@ const SendMessagehooks = () => {
 			});
             const data = await result.json();
             if (data.error) throw new Error(data.error);
-            setmessages(...messages,data);
+            setmessages([...messages,data]);
 
         }
 

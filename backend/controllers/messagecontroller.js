@@ -72,9 +72,10 @@ export const getmessages = async (req, res) => {
   
       // Log the messages to see if they are populated
       console.log("Messages in the conversation:", conversation.messages);
+      const messages = conversation.messages;
   
       // Return the messages
-      res.status(200).json(conversation.messages);
+      res.status(200).json(messages);
     } catch (error) {
       console.log("Error in getMessages controller: ", error.message);
       res.status(500).json({ error: "Internal server error" });
