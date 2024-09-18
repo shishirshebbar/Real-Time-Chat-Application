@@ -1,11 +1,14 @@
 import React from 'react'
 import { HiEmojiHappy } from "react-icons/hi";
 import useConversation from '../../zustand/useConversation';
+import { useSocketContext } from '../../context-api/SocketContext';
 
 
 function Conversation({conversation,lastindex,emoji}) {
 	const {selectedconversation,setselectedconversation}= useConversation();
 	const ifselected = selectedconversation && selectedconversation._id === conversation._id;//update background color
+	const {onlineusers} = useSocketContext();
+	const ifonline = onlineusers.includes(conversation._id);
 	return (
 		<>
 			<div className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer
@@ -13,7 +16,7 @@ function Conversation({conversation,lastindex,emoji}) {
 			`}
 			onClick={()=>setselectedconversation(conversation)}
 			>
-			<div className="avatar online">
+			<div className={`avatar ${ifonline ? "online":""}`}>
 			
 				<div className="w-12 rounded-full">
 				{console.log(conversation.profilepic)}

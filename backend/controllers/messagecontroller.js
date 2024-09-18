@@ -1,5 +1,7 @@
 import Conversation from "../model/conversationmodel.js"; // Adjust the path if necessary
 import Message from "../model/messagemodel.js";
+import { getrecieverid } from "../socket/socket.js";
+import { io } from "../socket/socket.js";
 
 
 export const sendmessage = async (req, res) => {
@@ -33,6 +35,8 @@ export const sendmessage = async (req, res) => {
         receiverId,
         message
       });
+
+
   
       //  Save the new message
       await newMessage.save();
@@ -42,6 +46,12 @@ export const sendmessage = async (req, res) => {
       await conversation.save();
   
       console.log("New message saved: ", newMessage);
+
+      const recieversocketid = getrecieverid(receiverId);
+      //io.to(socket.id).emit is used to send events to a particular events
+      if(receiverId){
+        io.to(recieversocketid).emit("newMessage",newMessage);
+      }
       
       // Return the newly created message
       res.status(201).json(newMessage);
